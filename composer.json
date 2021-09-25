@@ -1,0 +1,28 @@
+{
+	"require:":{
+
+	},
+	"autoload":{
+		"psr-4":{
+			"App\\":"app/",
+			"Controllers\\":"Controllers/",
+			"Models\\":"Models/",
+			"Core\\":"core/",
+			"Utils\\":"utils/",
+			"Support\\":"support/"
+		}
+	},
+	"require": {
+		"mpdf/mpdf": "^8.0",
+		"dompdf/dompdf": "^1.0",
+		"filp/whoops": "^2.14",
+		"vlucas/phpdotenv": "^5.3",
+		"illuminate/database": "^8.55",
+		"league/plates": "^3.4",
+		"symfony/validator": "^5.3",
+		"illuminate/events": "^8.57"
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^5.3"
+	}
+}
