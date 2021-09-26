@@ -564,50 +564,43 @@ function addProdv(obj) {
 
   if ($('input[name="products_v[' + id_prod + '][qtd]"]').length === 0) {
     var tr =
-      '<tr class="active">' +
-      "<td>" +
-      '<div class="form-group">' +
-      '<button class="btn btn-primary btn-flat" onclick="excluirProdv(this)">X<i class="fa fa-times"></i></button>' +
-      "</div>" +
-      "</td>" +
-      "<td>" +
-      '<div class="form-group">' +
-      '<input type="text" class="form-control text-capitalize" value="' +
-      id_prod +
-      '" readonly/>' +
-      "</div>" +
-      "</td>" +
-      "<td>" +
-      '<div class="form-group">' +
-      '<input type="text" class="form-control text-capitalize" value="' +
-      nome_prod +
-      '" readonly/>' +
-      "</div>" +
-      "</td>" +
-      "<td>" +
-      '<div class="form-group">' +
-      '<input type="text" class="form-control" value="' +
-      preco +
-      '" name="products_v[' +
-      id_prod +
-      "][" +
-      "preco_venda" +
-      ']" value="' +
-      '" id="preco"/>' +
-      "</div>" +
-      "</td>" +
-      "<td>" +
-      '<div class="form-group">' +
-      '<input type="number" name="products_v[' +
-      id_prod +
-      "][" +
-      "qtd" +
-      ']" class="p_quant-v form-control touchspin" value="1" onchange="updateSubtotalv(this)" data-price-v="' +
-      preco +
-      '" />' +
-      "</div>" +
-      "</td>" +
-      "</tr>";
+        '<tr class="active">' +
+        "<td>" +
+        '<div class="form-group">' +
+        '<button class="btn btn-primary btn-flat" onclick="excluirProdv(this)">X<i class="fa fa-times"></i></button>' +
+        "</div>" +
+        "</td>" +
+        "<td>" +
+        '<div class="form-group">' +
+        '<input type="text" class="form-control text-capitalize" value="' + id_prod + '" name="products_v[' + id_prod + "][" + "id_prod" + ']" readonly/>' +
+        "</div>" +
+        "</td>" +
+        "<td>" +
+        '<div class="form-group">' +
+        '<input type="text" class="form-control text-capitalize" value="' +
+        nome_prod +
+        '" readonly/>' +
+        "</div>" +
+        "</td>" +
+        "<td>" +
+        '<div class="form-group">' +
+        '<input type="text" class="form-control" value="' +
+        preco +
+        '" name="products_v[' + id_prod + "][" + "preco_venda" + ']" value="' + '" id="preco"/>' +
+        "</div>" +
+        "</td>" +
+        "<td>" +
+        '<div class="form-group">' +
+        '<input type="number" name="products_v[' +
+        id_prod +
+        "][" +
+        "qtd" +
+        ']" class="p_quant-v form-control" value="1" onchange="updateSubtotalv(this)" data-price-v="' +
+        preco +
+        '" />' +
+        "</div>" +
+        "</td>" +
+        "</tr>";
 
     $("#products_table_v").append(tr);
   }

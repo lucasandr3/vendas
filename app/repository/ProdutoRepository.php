@@ -11,6 +11,11 @@ class ProdutoRepository implements ProdutoRepositoryInterface
 
     }
 
+    public function todosId($produtosId)
+    {
+        return Produto::select('id_prod','cost')->whereIn('id_prod', $produtosId)->get()->toArray();
+    }
+
     public function todosInativos()
     {
 

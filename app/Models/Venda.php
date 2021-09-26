@@ -12,7 +12,7 @@ class Venda extends Eloquent
 
     public $table = 'vendas';
     public $timestamps = false;
-    protected $fillable = array('*');
+    protected $fillable = ['vendedor', 'parceiro', 'cliente', 'subtotal', 'total', 'desconto', 'data_venda'];
     protected $primaryKey = 'id_venda';
 
     public function clientes()

@@ -6,6 +6,8 @@ interface ProdutoRepositoryInterface
 {
     public function todosAtivos();
 
+    public function todosId($produtosId);
+
     public function todosInativos();
 
     public function vencidos();

@@ -41,7 +41,16 @@ class Authenticate
 
     public static function redirect($route, $message = null)
 	{
-		view($route, ['message' => $message]);
+	    if(isset($message) && !empty($message)) {
+            view($route, ['message' => $message]);
+        } else {
+            if($route === 'login/login') {
+                header("Location: ".$_ENV['APP_URL'].'login');
+            } else {
+                header("Location: ".$_ENV['APP_URL'].$route);
+            }
+        }
+
 	}
 
     public static function redirectHome($route)

@@ -115,7 +115,8 @@
                             <div class="form-group form-password-toggle col-6">
                                 <label>Informe o Cliente</label>
                                 <select class="select2 form-control form-control-lg" name="cliente_venda">
-                                    <option value="0">Informe o cliente</option>
+                                    <option value="00">Informe o cliente</option>
+                                    <option value="0">Cliente Padrão</option>
                                     <?php foreach ($clientes as $cliente): ?>
                                         <option value="<?= $cliente->id_cliente; ?>"><?= $cliente->name; ?></option>
                                     <?php endforeach; ?>
@@ -322,12 +323,12 @@
                         </div>
 
                         <div class="row mb-2">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label>Crediário Loja</label>
                                 <input type="text" class="form-control caixa-open" value="" placeholder="Crediario loja"
                                        name="crediario_loja" onFocusOut="calcVenda(this.value, 'Crediario Loja')" />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label>Quantidade de Parcela</label>
                                 <select class="form-control" name="crediario_loja_parcela">
                                     <option value="0">Escolha a quantidade de parcelas</option>
@@ -344,6 +345,13 @@
                                     <option value="11">11 Parcelas</option>
                                     <option value="12">12 Parcelas</option>
                                 </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Vencimento</label>
+                                <input type="date" class="form-control pull-right"
+                                       value="" name="crediario_vencimento" id=""
+                                       placeholder="00/00/0000">
                             </div>
                         </div>
 

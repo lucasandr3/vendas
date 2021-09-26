@@ -23,6 +23,30 @@ class VendaRepository implements VendaRepositoryInterface
         return $venda->id_venda;
     }
 
+    public function salvaPagamentoVenda($dadosPagamento)
+    {
+        return VendaPagamento::insert($dadosPagamento);
+    }
+
+    public function salvaCrediarioLoja($dadosParcelamento)
+    {
+        foreach ($dadosParcelamento as $parcelamento) {
+            VendaParcela::insert($parcelamento);
+        }
+    }
+
+    public function salvaProdutosVenda($produtosVenda)
+    {
+        foreach ($produtosVenda as $produto) {
+            VendaProduto::insert($produto);
+        }
+    }
+
+    public function deletaVenda($venda)
+    {
+        Venda::deleted('id_venda', $venda);
+    }
+
     public function buscaPagamentoVendas(array $codVendas)
     {
         return VendaPagamento::whereIn('id_venda', $codVendas)->get()->toArray();

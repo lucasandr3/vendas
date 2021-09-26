@@ -20,11 +20,16 @@ class Controller {
 		require 'themes/theme'.THEME.'/'.$viewName.'.php';
 	}
 
-	public function redirect($route)
-	{
-		header("Location: ".$_ENV['APP_URL'].$route);
-		exit;
-	}
+//	public function redirect($route)
+//	{
+//		header("Location: ".$_ENV['APP_URL'].$route);
+//		exit;
+//	}
+
+    public function redirect($route, $message = null)
+    {
+        header("Location: ".$_ENV['APP_URL'].$route);
+    }
 
 	public function request()
 	{

@@ -211,21 +211,51 @@ class Utils {
         return $result;
     }
 
-    public static function carai($message) 
+    public static function valorCalculado($totalVenda, $dados = null)
     {
-        $message = (Object)$message;
-        $_SESSION['alert'] = $message;
+        if($dados) {
 
-        if(isset($_SESSION['alert']) && !empty($_SESSION['alert'])) {
-            echo "<script type='text/javascript'>
-            Swal.fire({
-                icon: '$message->type',
-                title: '$message->title',
-                text: '$message->text',
-                showConfirmButton: false,
-                timer: 3000
-            });
-            </script>";
+            $valor = explode(',' , $dados);
+
+            $totalPago = (float)$totalVenda;
+            $taxa = (float)$valor[1];
+            $valorTaxa = ($taxa/100)*$totalPago;
+            return $totalFormatado = $totalPago - $valorTaxa;
+
+        } else {
+            return null;
+        }
+    }
+
+    public static function taxaVenda($dados = null)
+    {
+        if($dados) {
+
+            $valor = explode(',' , $dados);
+            return (float)$valor[1];
+
+        } else {
+            return null;
+        }
+    }
+
+    public static function qtdeParcelaVenda($dados = null)
+    {
+        if ($dados) {
+            $valor = explode(',' , $dados);
+            return (int)$valor[0];
+        } else {
+            return null;
+        }
+    }
+
+    public static function bandeiraVenda($dados = null)
+    {
+        if($dados) {
+            $valor = explode(',' , $dados);
+            return $valor[2];
+        } else {
+            return null;
         }
     }
 }
