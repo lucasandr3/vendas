@@ -22,13 +22,8 @@ class HomeController extends Controller
         $data = [];
 
         $data['nome'] = 'Lucas';
-        $this->redirect('pdv', [
-                'type' => 'success',
-                'title' => 'Aviso',
-                'text' => 'Login e/ou senha errados.'
-            ]
-        );
-//        render('home/home', []);
+
+        render('home/home', []);
 
 	}
 }

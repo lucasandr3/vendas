@@ -138,6 +138,7 @@ $routes['/pdv'] = '/pontoVenda';
 // rotas venda
 $routes['/vendas'] = '/vendas';
 $routes['/nova/venda'] = '/vendas/nova';
+$routes['/relatorio/venda/diario'] = '/relatorioVenda/diario';
 
 /*
 *  Fim das rotas do app

@@ -31,7 +31,7 @@ class Authenticate
 
     public static function getUser()
     {
-        return $_SESSION['userLogged'];
+        return $_SESSION['userLogged'] ?? null;
     }
 
     private static function session($user)

@@ -36,4 +36,9 @@ class Controller {
 		return $obj = (object)$_REQUEST; //change array to stdClass object
 	}
 
+    public function reqGet()
+    {
+        return $obj = (object)$_GET; //change array to stdClass object
+    }
+
 }

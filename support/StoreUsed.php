@@ -21,7 +21,7 @@ class StoreUsed
 
     public static function getStore()
     {
-        return $_SESSION['userStore'];
+        return $_SESSION['userStore'] ?? null;
     }
 
     private static function session($store)

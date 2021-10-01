@@ -5,11 +5,16 @@ use Support\Authenticate;
 
 function render($view, $data=null)
 {
-    $store = (Object)StoreUsed::getStore();
-    $user = (Object)Authenticate::getUser();
+    $store = (Object)StoreUsed::getStore() ?? null;
+    $user = (Object)Authenticate::getUser() ?? null;
 
     $templates = new Engine('themes/layout'.LAYOUT);
-    $templates->addData(['company' => $store->nome, 'username' => $user->nome, 'email' => $user->email], 'template');
+    $templates->addData([
+        'company' => $store->nome ?? null,
+        'username' => $user->nome ?? null,
+        'email' => $user->email ?? null
+        ],
+'template');
     $templates->addFolder('tema', 'themes/theme'.THEME);
     echo $templates->render('tema::'.$view, $data);
 

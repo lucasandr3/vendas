@@ -5,14 +5,17 @@ namespace App\Controllers;
 use App\middleware\Auth;
 use App\service\ClienteService;
 use App\service\ParceiroService;
+use App\service\RelatorioVendaService;
 use App\service\TaxaService;
 use App\service\UsuarioService;
 use App\service\VendaService;
 use Core\Controller;
 use Support\Authenticate;
+use Utils\Utils;
 
-class VendasController extends Controller
+class RelatorioVendaController extends Controller
 {
+    private $relatorioVendaService;
     private $vendaService;
     private $clienteService;
     private $parceiroService;
@@ -22,6 +25,7 @@ class VendasController extends Controller
     public function __construct()
     {
         Auth::isLogged();
+        $this->relatorioVendaService = new RelatorioVendaService;
         $this->vendaService = new VendaService;
         $this->clienteService = new ClienteService;
         $this->parceiroService = new ParceiroService;
@@ -29,17 +33,17 @@ class VendasController extends Controller
         $this->taxaService = new TaxaService;
     }
 
-    public function index()
+    public function diario()
     {
+        $dataFiltro = Utils::verificaDataRelatorioDia($this->request());
 
-        $data = [];
-
-        $data['nome'] = 'Lucas';
-
-        $vendas = $this->vendaService->buscaTodasVendas();
-
-        render('vendas/vendas', [
-            'vendas' => $vendas
+        $totaisVenda = $this->relatorioVendaService->totaisVenda($dataFiltro);
+echo "<pre>";
+var_dump($totaisVenda);
+echo "</pre>";
+die;
+        render('vendas_relatorio/diario', [
+            'dataFiltro' => $dataFiltro
         ]);
 
     }

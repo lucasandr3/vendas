@@ -38,20 +38,35 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic-vendas table">
+                                <table class="table-bordered table" id="table_id">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th>id</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Date</th>
-                                            <th>Salary</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Código da venda</th>
+                                            <th>Total da venda</th>
+                                            <th>Data da venda</th>
+                                            <th class="text-center">Ações</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <?php foreach($vendas as $venda): ?>
+                                            <tr>
+                                                <td class="text-danger font-weight-bold">#<?=$venda['id_venda'];?></td>
+                                                <td><?=moeda($venda['total']);?></td>
+                                                <td><?=dataFormatada($venda['data_venda']);?></td>
+                                                <td class="text-center d-flex justify-content-around">
+                                                    <a href="<?=url('ver/venda/' . $venda['id_venda']);?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalhes da Venda">
+                                                        <i data-feather="file-text" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="<?=url('ver/venda/' . $venda['id_venda']);?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Produtos da Venda">
+                                                        <i data-feather="package" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="<?=url('ver/venda/' . $venda['id_venda']);?>" data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir Venda">
+                                                        <i data-feather="trash-2" class="font-medium-3 text-danger"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

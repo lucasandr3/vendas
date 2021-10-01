@@ -12,11 +12,39 @@
                 <li class=" navigation-header"><span>Seção Vendas</span><i data-feather="more-horizontal"></i>
                 </li>
 
-                <li class=" nav-item">
-                    <a class="d-flex align-items-center" href="<?=url('vendas');?>">
-                        <i data-feather="shopping-cart"></i>
-                        <span class="menu-title text-truncate">Vendas</span>
-                    </a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="shopping-cart"></i><span class="menu-title text-truncate">Vendas</span></a>
+                    <ul class="menu-content">
+                        <li>
+                            <a class="d-flex align-items-center" href="<?=url('pdv');?>">
+                                <i data-feather="circle"></i>
+                                <span class="menu-title text-truncate">Nova Venda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-items-center" href="<?=url('vendas');?>">
+                                <i data-feather="circle"></i>
+                                <span class="menu-title text-truncate">Vendas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-items-center" href="<?=url('relatorio/venda/diario');?>">
+                                <i data-feather="circle"></i>
+                                <span class="menu-item">Relatório Diário</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-items-center" href="<?=url('novo/cliente');?>">
+                                <i data-feather="circle"></i>
+                                <span class="menu-item">Relatório Mensal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="d-flex align-items-center" href="<?=url('novo/cliente');?>">
+                                <i data-feather="circle"></i>
+                                <span class="menu-item">Relatório Vendedor</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layers"></i><span class="menu-title text-truncate">Pedidos</span></a>

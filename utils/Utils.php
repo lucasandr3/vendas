@@ -258,4 +258,9 @@ class Utils {
             return null;
         }
     }
+
+    public static function verificaDataRelatorioDia($data)
+    {
+        return isset($data->filter_date) ? $data->filter_date : date('Y-m-d');
+    }
 }

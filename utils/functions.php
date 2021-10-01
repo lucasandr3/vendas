@@ -57,3 +57,12 @@ function bandeirasValueCartao($dados)
     return "{$dados['qt_parc']},{$dados['taxa_v']}%";
 }
 
+function moeda($valor)
+{
+    return "R$ ". number_format($valor, 2, ",", ".");
+}
+
+function dataFormatada($data)
+{
+    return date('d-m-Y', strtotime($data));
+}
