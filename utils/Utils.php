@@ -261,6 +261,97 @@ class Utils {
 
     public static function verificaDataRelatorioDia($data)
     {
-        return isset($data->filter_date) ? $data->filter_date : date('Y-m-d');
+        return isset($data->dataInicial) ? $data->dataInicial : date('Y-m-d');
+    }
+
+    public static function verificaDataRelatorioDataInicial($data)
+    {
+        return isset($data->dataInicial) ? $data->dataInicial : date('Y-m-01');
+    }
+
+    public static function verificaDataRelatorioDataFinal($data)
+    {
+        return isset($data->dataFinal) ? $data->dataFinal : date('Y-m-t');
+    }
+
+    public static function formataPreco($number)
+    {
+        $n = ($number) ? $number : 0.00;
+
+        return "R$ ". number_format($n, 2 , ",", ".");
+    }
+
+    public static function calculaTotal($v1, $v2): string
+    {
+        $vFinal = ($v1 + $v2);
+        return self::formataPreco($vFinal);
+    }
+
+    public static function calculaTotalTaxaPago($v1, $v2, $v3, $v4): string
+    {
+        $vSemTaxa = ($v1 + $v2);
+        $vComTaxa = ($v3 + $v4);
+        $vFinal = ($vSemTaxa - $vComTaxa);
+        return self::formataPreco($vFinal);
+    }
+
+    public static function calculaTotalTaxaPagoTwo($v1, $v2): string
+    {
+        $vFinal = ($v1 - $v2);
+        return self::formataPreco($vFinal);
+    }
+
+    public static function calculaTotalDescontoTaxa($values): string
+    {
+        $vFinal = 0;
+        for ($i = 0; $i < sizeof($values); $i++) {
+            $vFinal+= $values[$i];
+        }
+        return self::formataPreco($vFinal);
+    }
+
+    public static function calculaTotalSemDescontoTaxa($values): string
+    {
+        $vFinal = 0;
+        for ($i = 0; $i < sizeof($values); $i++) {
+            $vFinal+= $values[$i];
+        }
+        return self::formataPreco($vFinal);
+    }
+
+    public static function calculaTotalParceiroCredito($v1, $v2): string
+    {
+        $vFinal = ($v1 + $v2);
+        return self::formataPreco($vFinal);
+    }
+
+    public static function calculaTotalParceiroDebito($v1, $v2): string
+    {
+        $vFinal = ($v1 + $v2);
+        return self::formataPreco($vFinal);
+    }
+
+    public static function contaSimplesArray($values): string
+    {
+        $vFinal = 0;
+        for ($i = 0; $i < sizeof($values); $i++) {
+            $v1 = substr($values[$i],3);
+            $v1 = (float)str_replace(',', '.', $v1);
+            $vFinal+= $v1;
+        }
+        return self::formataPreco($vFinal);
+    }
+
+    public static function contaSimples($v1, $v2): string
+    {
+        $v1f = substr($v1,3);
+        $v1f = (float)str_replace(',', '.', $v1f);
+        $v1f = round($v1f, 2);
+        $v2f = substr($v2,3);
+        $v2f = (float)str_replace(',', '.', $v2f);
+        $v2f = round($v2f, 2);
+
+        $vFinal = ($v2f - $v1f);
+        return $vFinal = "R$ " . number_format($vFinal, 2, ',', '.');
     }
 }

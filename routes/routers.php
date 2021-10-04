@@ -140,6 +140,12 @@ $routes['/vendas'] = '/vendas';
 $routes['/nova/venda'] = '/vendas/nova';
 $routes['/relatorio/venda/diario'] = '/relatorioVenda/diario';
 
+// impressao
+$routes['/imprimir/venda/diario/{filtro}/{who}'] = '/impressao/vendaDiario/:filtro/:who';
+$routes['/nova/venda'] = '/vendas/nova';
+$routes['/relatorio/venda/diario'] = '/relatorioVenda/diario';
+$routes['/relatorio/venda/mensal'] = '/relatorioVenda/mensal';
+
 /*
 *  Fim das rotas do app
 */

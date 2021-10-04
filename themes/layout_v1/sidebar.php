@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="d-flex align-items-center" href="<?=url('novo/cliente');?>">
+                            <a class="d-flex align-items-center" href="<?=url('relatorio/venda/mensal');?>">
                                 <i data-feather="circle"></i>
                                 <span class="menu-item">Relatório Mensal</span>
                             </a>

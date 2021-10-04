@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Despesa extends Eloquent {
 
     use HasFactory;
-    public $table = 'Despesas';
+    public $table = 'despesa';
     public $timestamps = false;
 
 }

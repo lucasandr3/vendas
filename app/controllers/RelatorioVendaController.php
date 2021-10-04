@@ -35,17 +35,81 @@ class RelatorioVendaController extends Controller
 
     public function diario()
     {
-        $dataFiltro = Utils::verificaDataRelatorioDia($this->request());
+        $dataInicial = Utils::verificaDataRelatorioDia($this->request());
+        $dataFiltro = array($dataInicial, $dataInicial);
 
-        $totaisVenda = $this->relatorioVendaService->totaisVenda($dataFiltro);
-echo "<pre>";
-var_dump($totaisVenda);
-echo "</pre>";
-die;
+        $totalGeral = $this->relatorioVendaService->totaisVenda($dataFiltro)->jsonSerialize();
+        $mastercard = $this->relatorioVendaService->cartaoMastercard($dataFiltro)->jsonSerialize();
+        $visa = $this->relatorioVendaService->cartaoVisa($dataFiltro)->jsonSerialize();
+        $hipercard = $this->relatorioVendaService->cartaoHipercard($dataFiltro)->jsonSerialize();
+        $elo = $this->relatorioVendaService->cartaoElo($dataFiltro)->jsonSerialize();
+        $cabal = $this->relatorioVendaService->cartaoCabalVale($dataFiltro)->jsonSerialize();
+        $amex = $this->relatorioVendaService->cartaoAmex($dataFiltro)->jsonSerialize();
+        $bandeiras = [$mastercard, $visa, $hipercard, $elo, $cabal, $amex];
+
+        $despesas = $this->relatorioVendaService->despesas($dataFiltro)->jsonSerialize();
+        $totalDespesa = $this->relatorioVendaService->totalDespesa($dataFiltro);
+
+        $abriuCaixa = $this->relatorioVendaService->caixaAbertura($dataFiltro);
+        $custoBruto = $this->relatorioVendaService->custoBruto($dataFiltro);
+
+        $totalGeralBandeiras = $this->relatorioVendaService->totalGeralBandeiras($bandeiras)->jsonSerialize();
+
         render('vendas_relatorio/diario', [
-            'dataFiltro' => $dataFiltro
+            'dataFiltro' => $dataFiltro,
+            'totalGeral' => (Object)$totalGeral,
+            'mastercard' => (Object)$mastercard,
+            'visa' => (Object)$visa,
+            'hipercard' => (Object)$hipercard,
+            'elo' => (Object)$elo,
+            'cabal' => (Object)$cabal,
+            'amex' => (Object)$amex,
+            'despesas' => $despesas,
+            'totalDespesa' => $totalDespesa,
+            'abriuCaixa' => $abriuCaixa,
+            'custoBruto' => $custoBruto,
+            'totalBandeiras' => (Object)$totalGeralBandeiras
         ]);
+    }
 
+    public function mensal()
+    {
+        $dataInicial = Utils::verificaDataRelatorioDataInicial($this->request());
+        $dataFinal = Utils::verificaDataRelatorioDataFinal($this->request());
+        $dataFiltro = array($dataInicial, $dataFinal);
+
+        $totalGeral = $this->relatorioVendaService->totaisVenda($dataFiltro)->jsonSerialize();
+        $mastercard = $this->relatorioVendaService->cartaoMastercard($dataFiltro)->jsonSerialize();
+        $visa = $this->relatorioVendaService->cartaoVisa($dataFiltro)->jsonSerialize();
+        $hipercard = $this->relatorioVendaService->cartaoHipercard($dataFiltro)->jsonSerialize();
+        $elo = $this->relatorioVendaService->cartaoElo($dataFiltro)->jsonSerialize();
+        $cabal = $this->relatorioVendaService->cartaoCabalVale($dataFiltro)->jsonSerialize();
+        $amex = $this->relatorioVendaService->cartaoAmex($dataFiltro)->jsonSerialize();
+        $bandeiras = [$mastercard, $visa, $hipercard, $elo, $cabal, $amex];
+
+        $despesas = $this->relatorioVendaService->despesas($dataFiltro)->jsonSerialize();
+        $totalDespesa = $this->relatorioVendaService->totalDespesa($dataFiltro);
+
+        $abriuCaixa = $this->relatorioVendaService->caixaAbertura($dataFiltro);
+        $custoBruto = $this->relatorioVendaService->custoBruto($dataFiltro);
+
+        $totalGeralBandeiras = $this->relatorioVendaService->totalGeralBandeiras($bandeiras)->jsonSerialize();
+
+        render('vendas_relatorio/mensal', [
+            'dataFiltro' => $dataFiltro,
+            'totalGeral' => (Object)$totalGeral,
+            'mastercard' => (Object)$mastercard,
+            'visa' => (Object)$visa,
+            'hipercard' => (Object)$hipercard,
+            'elo' => (Object)$elo,
+            'cabal' => (Object)$cabal,
+            'amex' => (Object)$amex,
+            'despesas' => $despesas,
+            'totalDespesa' => $totalDespesa,
+            'abriuCaixa' => $abriuCaixa,
+            'custoBruto' => $custoBruto,
+            'totalBandeiras' => (Object)$totalGeralBandeiras
+        ]);
     }
 
     public function nova()

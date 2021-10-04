@@ -26,7 +26,7 @@ function render($view, $data=null)
 function view($view, $data=null)
 {
     $templates = new Engine('themes/theme'.THEME);
-    echo $templates->render($view, ['data' => $data]);
+    echo $templates->render($view, $data);
 
     if(isset($data['message'])) {
         sweetAlert($data['message']);

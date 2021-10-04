@@ -66,3 +66,16 @@ function dataFormatada($data)
 {
     return date('d-m-Y', strtotime($data));
 }
+
+function contaSimples($v1, $v2)
+{
+    $v1f = substr($v1,3);
+    $v1f = (float)str_replace(',', '.', $v1f);
+    $v1f = round($v1f, 2);
+    $v2f = substr($v2,3);
+    $v2f = (float)str_replace(',', '.', $v2f);
+    $v2f = round($v2f, 2);
+
+    $vFinal = ($v2f - $v1f);
+    return $vFinal = "R$ " . number_format($vFinal, 2, ',', '.');
+}

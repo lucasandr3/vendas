@@ -20,8 +20,9 @@
 		"illuminate/database": "^8.55",
 		"league/plates": "^3.4",
 		"symfony/validator": "^5.3",
-		"illuminate/events": "^8.57"
-	},
+		"illuminate/events": "^8.57",
+      	"ext-json": "*"
+    },
 	"require-dev": {
 		"symfony/var-dumper": "^5.3"
 	}

@@ -1,6 +1,15 @@
 <?php
 namespace App\service;
 
+use App\DTO\venda\bandeiras\BDAmexDTO;
+use App\DTO\venda\bandeiras\BDCabalDTO;
+use App\DTO\venda\bandeiras\BDEloDTO;
+use App\DTO\venda\bandeiras\BDHipercardDTO;
+use App\DTO\venda\bandeiras\BDMastercadDTO;
+use App\DTO\venda\bandeiras\BDTotalBandeirasDTO;
+use App\DTO\venda\bandeiras\BDVisaDTO;
+use App\DTO\venda\despesas\DespesasDTO;
+use App\DTO\venda\PagamentosDTO;
 use App\interfaces\service\RelatorioVendaServiceInterface;
 use App\repository\ProdutoRepository;
 use App\repository\RelatorioVendaRepository;
@@ -18,36 +27,72 @@ class RelatorioVendaService implements RelatorioVendaServiceInterface
         $this->produtosRepository = new ProdutoRepository;
     }
 
-    public function totaisVenda($data)
+    public function totaisVenda($data): PagamentosDTO
     {
-        $dinheiro = $this->repository->dinheiro($data);
-        echo "<pre>";
-        var_dump($dinheiro);
-        echo "</pre>";
-        die;
-        $vendas = $this->repository->buscaVendas();
-        $codVendas = array_column($vendas, 'id_venda');
+        $pagamentos = $this->repository->totalGeralVenda($data);
+        return new PagamentosDTO($pagamentos);
+    }
 
-         $vendaPagamento = $this->repository->buscaPagamentoVendas($codVendas);
+    public function cartaoMastercard($data): BDMastercadDTO
+    {
+        $mastercard = $this->repository->cartaoMastercard($data);
+        return new BDMastercadDTO($mastercard);
+    }
 
-         foreach ($vendaPagamento as $key => $value) {
-             $vendas[$key]['pagamento'] = $value;
-         }
+    public function cartaoVisa($data): BDVisaDTO
+    {
+        $visa = $this->repository->cartaoVisa($data);
+        return new BDVisaDTO($visa);
+    }
 
-        // $vendaParcelas = $this->repository->buscaParcelasVendas($codVendas);
+    public function cartaoHipercard($data): BDHipercardDTO
+    {
+        $hipercard = $this->repository->cartaoHipercard($data);
+        return new BDHipercardDTO($hipercard);
+    }
 
-        $vendaProdutos = $this->repository->buscaParcelasProdutos($codVendas);
-        $vendaProdutosAgrupados = arrayGroupBy('id_venda', $vendaProdutos);
+    public function cartaoElo($data): BDEloDTO
+    {
+        $elo = $this->repository->cartaoElo($data);
+        return new BDEloDTO($elo);
+    }
 
-        foreach ($vendas as $key => $value) {
-            foreach ($vendaProdutosAgrupados as $k => $v) {
-                if($v[0]['id_venda'] === $value['id_venda']) {
-                    $vendas[$key]['produtos'] = $v;
-                }
-            }
-        }
+    public function cartaoCabalVale($data): BDCabalDTO
+    {
+        $cabal = $this->repository->cartaoCabalVale($data);
+        return new BDCabalDTO($cabal);
+    }
 
-        return $vendas;
+    public function cartaoAmex($data): BDAmexDTO
+    {
+        $amex = $this->repository->cartaoAmex($data);
+        return new BDAmexDTO($amex);
+    }
+
+    public function despesas($data): DespesasDTO
+    {
+        $despesas = $this->repository->despesas($data);
+        return new DespesasDTO($despesas);
+    }
+
+    public function totalDespesa($data)
+    {
+        return Utils::formataPreco($this->repository->totalDespesa($data));
+    }
+
+    public function caixaAbertura($data)
+    {
+        return Utils::formataPreco($this->repository->caixaAbertura($data)->valor_open);
+    }
+    
+    public function custoBruto($data)
+    {
+        return Utils::formataPreco($this->repository->custoBruto($data)->total_custo);
+    }
+
+    public function totalGeralBandeiras($bandeiras)
+    {
+        return new BDTotalBandeirasDTO($bandeiras);
     }
 
     public function salvaVenda($dadosVenda)
